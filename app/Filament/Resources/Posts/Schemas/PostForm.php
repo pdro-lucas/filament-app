@@ -26,8 +26,8 @@ class PostForm
                     ->schema([
                         Group::make()
                             ->schema([
-                                TextInput::make("title"),
-                                TextInput::make("slug"),
+                                TextInput::make("title")->rules(["required", "min:3"]),
+                                TextInput::make("slug")->required()->minLength(3)->unique(),
                                 Select::make("category_id")
                                     ->label("Category")
                                     ->options(Category::all()->pluck("name", "id")),
